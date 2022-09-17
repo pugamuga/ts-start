@@ -1,4 +1,4 @@
-const sum = (a:number, b:number) => {
+const sum = (a:number, b:number):number => {
   let c;
   return (c = a + b);
 };
