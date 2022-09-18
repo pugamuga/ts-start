@@ -1,26 +1,23 @@
 "use strict";
-// enums
-const four = () => {
-    return 2 + 2;
+const user = {
+    name: "puga",
+    age: 25,
+    job: false,
+    intereses: {
+        books: "new",
+        movies: "old"
+    }
 };
-const allPersons = [
-    {
-        name: "Puga Admin",
-        status: 2 /* StatusEnum.ADMIN */,
-    },
-    {
-        name: "Puga user",
-        status: 3 /* StatusEnum.USER */,
-    },
-    {
-        name: "Puga Investor",
-        status: 4 /* StatusEnum.INVESTOR */,
-    },
-    {
-        name: "Puga Error",
-        status: 5 /* StatusEnum.ERROR */,
-    },
-];
-allPersons.map((person) => {
-    return console.log(`Name is: ${person.name}, and his role: ${person.status}`);
-});
+const userReturns = (person) => {
+    const coolPerson = {
+        name: "Cool_" + person.name,
+        age: person.age - 5,
+        job: !person.job,
+        intereses: {
+            books: "not" + person.intereses.books,
+            movies: "not" + person.intereses.movies
+        }
+    };
+    return coolPerson;
+};
+console.log(userReturns(user));

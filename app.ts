@@ -1,34 +1,39 @@
-// enums
-
-const four = (): number => {
-  return 2 + 2;
+const user = {
+  name: "puga",
+  age: 25,
+  job: false,
+  intereses:{
+    books:"new",
+    movies:"old"
+  }
 };
-const enum StatusEnum {
-  ADMIN=2,
-  USER=3,
-  INVESTOR=4,
-  ERROR=5,
+
+interface userMethod {
+  name: string;
+  age: number;
+  job: boolean;
 }
 
-const allPersons = [
-  {
-    name: "Puga Admin",
-    status: StatusEnum.ADMIN,
-  },
-  {
-    name: "Puga user",
-    status: StatusEnum.USER,
-  },
-  {
-    name: "Puga Investor",
-    status: StatusEnum.INVESTOR,
-  },
-  {
-    name: "Puga Error",
-    status: StatusEnum.ERROR,
-  },
-];
+interface userIntereses {
+  intereses: {
+    books: string;
+    movies: string;
+  };
+}
 
-allPersons.map((person: { name: string; status: StatusEnum }) => {
-  return console.log(`Name is: ${person.name}, and his role: ${person.status}`);
-});
+interface fullUser extends userMethod, userIntereses{}
+
+const userReturns = (person: fullUser): userMethod => {
+  const coolPerson = {
+    name: "Cool_" + person.name,
+    age: person.age - 5,
+    job: !person.job,
+    intereses:{
+        books:"not"+person.intereses.books,
+        movies:"not"+person.intereses.movies
+    }
+  };
+  return coolPerson;
+};
+
+console.log(userReturns(user));
