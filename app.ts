@@ -1,39 +1,77 @@
-const user = {
-  name: "puga",
-  age: 25,
-  job: false,
-  intereses:{
-    books:"new",
-    movies:"old"
-  }
-};
-
-interface userMethod {
+enum MethodDelivery {
+  NotSelect,
+  ToHome,
+  ToPoint,
+}
+interface IProduct {
+  id: number;
   name: string;
-  age: number;
-  job: boolean;
+  price: number;
 }
 
-interface userIntereses {
-  intereses: {
-    books: string;
-    movies: string;
-  };
+interface IToHome {
+  date: Date;
+  address: string;
+}
+interface IToPoint {
+  date: Date;
+  storeId: number;
 }
 
-interface fullUser extends userMethod, userIntereses{}
+class Cart {
+  private cart: IProduct[] = [];
+  deliveryMethod: MethodDelivery;
+  deliveryAddress!: IToHome | IToPoint;
 
-const userReturns = (person: fullUser): userMethod => {
-  const coolPerson = {
-    name: "Cool_" + person.name,
-    age: person.age - 5,
-    job: !person.job,
-    intereses:{
-        books:"not"+person.intereses.books,
-        movies:"not"+person.intereses.movies
+  constructor() {
+    this.deliveryMethod = MethodDelivery.NotSelect;
+  }
+
+  checkYourCart() {
+    return console.log(this.cart);
+  }
+
+  addProductToCart(product: IProduct) {
+    this.cart.push(product);
+  }
+
+  deleteProductById(id: number) {
+    this.cart = this.cart.filter((item: IProduct) => item.id != id);
+  }
+
+  sumAllProductsInCart() {
+    if (this.cart) {
+      const overallPrice = this.cart.map((i: IProduct) => i.price);
+      const res: number = overallPrice.reduce((a, b) => a + b);
+      console.log(res);
+    } else {
+      return console.log(0);
     }
-  };
-  return coolPerson;
-};
+  }
 
-console.log(userReturns(user));
+  overallPrice: number = this.cart
+    .map((i: IProduct) => i.price)
+    .reduce((a, b) => a + b);
+
+  chooseDelivery(
+    method: MethodDelivery.ToHome | MethodDelivery.ToPoint,
+    address: IToHome | IToPoint
+  ) {
+    this.deliveryMethod = method;
+    this.deliveryAddress = address;
+  }
+
+  checkOut() {
+    if (this.cart && this.deliveryMethod && this.deliveryAddress) {
+      console.log(`You are Good! Your overall price is: ${
+        this.overallPrice
+      },and your
+      delivery ${
+        this.deliveryMethod == MethodDelivery.ToHome
+          ? "to home"
+          : "to pick point"
+      }
+      `);
+    }
+  }
+}

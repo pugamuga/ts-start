@@ -1,23 +1,8 @@
 "use strict";
-const user = {
-    name: "puga",
-    age: 25,
-    job: false,
-    intereses: {
-        books: "new",
-        movies: "old"
-    }
+const multiplyArray = (array) => {
+    const myArrayOfNumbers = array.map((i) => Number(i))
+        .filter((i) => !Number.isNaN(i));
+    const multiply = myArrayOfNumbers.reduce((a, b) => a * b);
+    return console.log(multiply);
 };
-const userReturns = (person) => {
-    const coolPerson = {
-        name: "Cool_" + person.name,
-        age: person.age - 5,
-        job: !person.job,
-        intereses: {
-            books: "not" + person.intereses.books,
-            movies: "not" + person.intereses.movies
-        }
-    };
-    return coolPerson;
-};
-console.log(userReturns(user));
+multiplyArray(["10", "15", "cat", 2]);
