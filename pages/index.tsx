@@ -1,18 +1,13 @@
 import Head from "next/head";
 import Image from "next/image";
 import testImage from "../assets/test.jpg";
+import NavBar from "../components/NavBar";
 
 export default function Home(): JSX.Element {
   return (
     <div className=" bg-gradient-to-tr from-violet-400 to-pink-500 w-screen h-[4000px] flex flex-col items-center">
-      <div
-        className="bg-black/50 h-20 backdrop-blur-md 
-      right-1/2 translate-x-1/2 w-[600px] rounded-[30px] fixed z-10 top-5
-      flex items-center justify-between px-12 ring-[1px] ring-white/10"
-      >
-        <p className=" text-white font-extrabold">Some Text</p>
-        <p className=" text-white font-extrabold">Some Text</p>
-        <p className=" text-white font-extrabold">Some Text</p>
+      <div className="fixed z-10 top-5 right-1/2 translate-x-1/2 ">
+        <NavBar/>
       </div>
 
       {[1, 2, 3, 4, 5, 6].map((i) => {
@@ -24,7 +19,7 @@ export default function Home(): JSX.Element {
           </div>
         );
       })}
-      <div style={{ backgroundImage: url("../assets/test.jpg")}} className="w-12 h-12" />
+      <div className="w-12 h-12" />
     </div>
   );
 }
