@@ -4,6 +4,6 @@
 
 @layer base {
   body {
-    @apply  font-extrabold text-2xl bg-slate-300
+    @apply  scrollbar-hide
   }
 }
