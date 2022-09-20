@@ -1,8 +1,11 @@
-import Head from 'next/head'
-import Image from 'next/image'
+import Head from "next/head";
+import Image from "next/image";
 
-export default function Home():JSX.Element|string {
+export default function Home(): JSX.Element {
   return (
-      "pUGA"
-  )
+    <div>
+     puga
+      {console.log("first")}
+    </div>
+  );
 }
